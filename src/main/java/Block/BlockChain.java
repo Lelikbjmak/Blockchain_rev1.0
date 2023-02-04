@@ -7,7 +7,8 @@ import java.util.ArrayList;
 public class BlockChain {
 
     private static ArrayList<Block> blockchain = new ArrayList<Block>();
-    private static final int DIFFICULTY = 5;
+    private static final int DIFFICULTY = 5;  // indicates how difficult and time-consuming it's to mine new block ->
+                                              // to find right hash for block
 
     public static void main(String[] args) {
 
@@ -46,16 +47,21 @@ public class BlockChain {
                 System.out.println("Current Hashes not equal");
                 return false;
             }
+            // indicates smb make shifts inside block
+
             //compare previous hash and registered previous hash
             if(!previousBlock.getHash().equals(currentBlock.getPreviousHash()) ) {
                 System.out.println("Previous Hashes not equal");
                 return false;
             }
+
+
             //check if hash is solved
             if(!currentBlock.getHash().substring( 0, DIFFICULTY).equals(hashTarget)) {
                 System.out.println("This block hasn't been mined");
                 return false;
             }
+
         }
         return true;
     }
